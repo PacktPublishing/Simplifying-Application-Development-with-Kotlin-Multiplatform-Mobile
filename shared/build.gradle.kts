@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.5.10"
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -24,9 +25,11 @@ kotlin {
     }
     sourceSets {
         val ktorVersion = "1.6.1"
+        val sqlDelightVersion = "1.5.1"
+        val koinVersion = "3.1.2"
         val commonMain by getting {
             dependencies {
-                api("io.insert-koin:koin-core:3.1.2")
+                api("io.insert-koin:koin-core:$koinVersion")
                 // Ktor
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-json:$ktorVersion")
@@ -35,6 +38,9 @@ kotlin {
                 // Serialization
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.2.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
+                // Sql Delight
+                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                implementation("com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion")
             }
         }
         val commonTest by getting {
@@ -46,6 +52,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+                api("io.insert-koin:koin-android:$koinVersion")
             }
         }
         val androidTest by getting {
@@ -57,6 +65,7 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
             }
         }
         val iosTest by getting
@@ -69,5 +78,12 @@ android {
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(30)
+    }
+}
+
+sqldelight {
+    database("DogifyDatabase") {
+        packageName = "com.nagyrobi144.dogify.db"
+        sourceFolders = listOf("sqldelight")
     }
 }

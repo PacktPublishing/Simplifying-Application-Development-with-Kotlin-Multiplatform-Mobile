@@ -1,0 +1,17 @@
+CREATE TABLE breeds(
+    name TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    isFavourite INTEGER AS Boolean DEFAULT 0
+);
+
+insert:
+INSERT OR REPLACE INTO breeds(name, imageUrl, isFavourite) VALUES (?, ?, ?);
+
+update:
+UPDATE breeds SET imageUrl = ?, isFavourite = ? WHERE name = ?;
+
+selectAll:
+SELECT * FROM breeds;
+
+clear:
+DELETE FROM breeds;
