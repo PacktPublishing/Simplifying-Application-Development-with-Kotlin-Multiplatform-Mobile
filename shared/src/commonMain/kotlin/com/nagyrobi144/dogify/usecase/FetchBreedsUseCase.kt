@@ -9,5 +9,5 @@ class FetchBreedsUseCase : KoinComponent {
 
     private val breedsRepository: BreedsRepository by inject()
 
-    suspend fun invoke(): List<Breed> = breedsRepository.fetch()
+    suspend operator fun invoke(): List<Breed> = breedsRepository.fetch()
 }

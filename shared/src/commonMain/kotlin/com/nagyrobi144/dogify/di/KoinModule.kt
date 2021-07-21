@@ -24,7 +24,7 @@ private val apiModule = module {
 }
 
 private val repositoryModule = module {
-    single { BreedsRepository(get(), get()) }
+    single { BreedsRepository() }
 
     factory { BreedsRemoteSource(get(), get()) }
     factory { BreedsLocalSource(get(), get()) }

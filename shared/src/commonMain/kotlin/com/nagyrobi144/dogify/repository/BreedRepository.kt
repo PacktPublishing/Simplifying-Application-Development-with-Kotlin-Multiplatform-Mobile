@@ -4,11 +4,14 @@ import com.nagyrobi144.dogify.model.Breed
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.supervisorScope
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class BreedsRepository internal constructor(
-    private val remoteSource: BreedsRemoteSource,
-    private val localSource: BreedsLocalSource
-) {
+class BreedsRepository: KoinComponent {
+
+    private val remoteSource: BreedsRemoteSource by inject()
+    private val localSource: BreedsLocalSource by inject()
+
     val breeds = localSource.breeds
 
     internal suspend fun get() = with(localSource.selectAll()) {

@@ -9,5 +9,5 @@ class GetBreedsUseCase : KoinComponent {
 
     private val breedsRepository: BreedsRepository by inject()
 
-    suspend fun invoke(): List<Breed> = breedsRepository.get()
+    suspend operator fun invoke(): List<Breed> = breedsRepository.get()
 }

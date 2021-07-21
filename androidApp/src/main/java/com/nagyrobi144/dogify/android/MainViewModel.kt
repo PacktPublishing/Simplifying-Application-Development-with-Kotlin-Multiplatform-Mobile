@@ -50,7 +50,7 @@ class MainViewModel(
 
     private fun loadData(isForceRefresh: Boolean = false) {
         val getData: suspend () -> List<Breed> =
-            { if (isForceRefresh) fetchBreeds.invoke() else getBreeds.invoke() }
+            { if (isForceRefresh) fetchBreeds() else getBreeds() }
 
         if (isForceRefresh) {
             _isRefreshing.value = true
