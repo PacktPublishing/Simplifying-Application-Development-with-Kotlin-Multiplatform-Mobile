@@ -5,12 +5,13 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.supervisorScope
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 import org.koin.core.component.inject
 
 class BreedsRepository: KoinComponent {
 
-    private val remoteSource: BreedsRemoteSource by inject()
-    private val localSource: BreedsLocalSource by inject()
+    private val remoteSource: BreedsRemoteSource = get(null)
+    private val localSource: BreedsLocalSource = get(null)
 
     val breeds = localSource.breeds
 
@@ -31,5 +32,5 @@ class BreedsRepository: KoinComponent {
         }
     }
 
-    suspend fun update(breed: Breed) = localSource.update(breed)
+    internal suspend fun update(breed: Breed) = localSource.update(breed)
 }

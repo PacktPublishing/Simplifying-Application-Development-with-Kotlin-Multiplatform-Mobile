@@ -3,8 +3,9 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    kotlin("plugin.serialization") version "1.5.10"
+    kotlin("plugin.serialization") version "1.5.21"
     id("com.squareup.sqldelight")
+    id("com.rickclephas.kmp.nativecoroutines") version "0.4.2"
 }
 
 kotlin {
@@ -37,7 +38,11 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 // Serialization
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.2.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt") {
+                    version {
+                        strictly("1.5.0-native-mt")
+                    }
+                }
                 // Sql Delight
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 implementation("com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion")

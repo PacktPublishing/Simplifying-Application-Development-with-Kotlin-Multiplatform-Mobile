@@ -1,7 +1,6 @@
 package com.nagyrobi144.dogify.util
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 
 /**
  * A Dispatcher abstraction in order to ease testing coroutines

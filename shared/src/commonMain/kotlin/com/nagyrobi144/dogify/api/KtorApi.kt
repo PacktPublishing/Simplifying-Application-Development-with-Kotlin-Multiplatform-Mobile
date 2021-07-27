@@ -7,23 +7,11 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.serialization.json.Json
+import kotlin.native.concurrent.SharedImmutable
 
 internal abstract class KtorApi {
 
-    private val jsonConfiguration = Json {
-        prettyPrint = true
-        ignoreUnknownKeys = true
-    }
-
-    val client = HttpClient {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(jsonConfiguration)
-        }
-        install(Logging) {
-            logger = Logger.SIMPLE
-            level = LogLevel.ALL
-        }
-    }
+    val client = httpClient
 
     /**
      * Use this method for configuring the request url
@@ -33,5 +21,22 @@ internal abstract class KtorApi {
             takeFrom("https://dog.ceo")
             path("api", path)
         }
+    }
+}
+
+private val jsonConfiguration get() = Json {
+    prettyPrint = true
+    ignoreUnknownKeys = true
+    useAlternativeNames = false
+}
+
+@SharedImmutable
+private val httpClient = HttpClient {
+    install(JsonFeature) {
+        serializer = KotlinxSerializer(jsonConfiguration)
+    }
+    install(Logging) {
+        logger = Logger.SIMPLE
+        level = LogLevel.ALL
     }
 }

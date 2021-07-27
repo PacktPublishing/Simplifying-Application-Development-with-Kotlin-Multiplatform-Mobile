@@ -38,7 +38,9 @@ private val usecaseModule = module {
 
 private val sharedModules = listOf(usecaseModule, repositoryModule, apiModule, utilityModule)
 
-fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
+fun initKoin(appDeclaration: KoinAppDeclaration) = startKoin {
     appDeclaration()
     modules(sharedModules)
 }
+
+fun initKoin() = initKoin { }
