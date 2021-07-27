@@ -34,12 +34,12 @@ class MainViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
     
     init() {
-       createObservable(for: repository.breedsNative).subscribe(onNext: { breeds in
+        createObservable(for: repository.breedsNative).subscribe(onNext: { breeds in
             DispatchQueue.main.async {
                 self.breeds = breeds
             }
         }).disposed(by: disposeBag)
-
+        
         $breeds.combineLatest($shouldFilterFavourites, { breeds, shouldFilterFavourites -> [Breed] in
             var result: [Breed] = []
             if(shouldFilterFavourites){
@@ -88,7 +88,7 @@ class MainViewModel: ObservableObject {
     
     func onFavouriteTapped(breed: Breed){
         createSingle(for: onToggleFavouriteState.invokeNative(breed: breed)).subscribe(onFailure: { error in
-           // We're going ignoring the failure, as it will be represented by the stream of breds
+            // We're going ignoring the failure, as it will be represented by the stream of breds
         }).disposed(by: disposeBag)
     }
     

@@ -12,6 +12,11 @@ dependencies {
     val lifecycleVersion = "2.3.1"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"){
+        version {
+            strictly("1.5.0-native-mt")
+        }
+    }
     // Android Kotlin extensions
     implementation("androidx.core:core-ktx:1.6.0")
     //region Jetpack Compose
@@ -61,7 +66,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.5.20"
+        kotlinCompilerVersion = "1.5.10"
         kotlinCompilerExtensionVersion = composeVersion
     }
 }

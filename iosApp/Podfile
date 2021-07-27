@@ -8,4 +8,5 @@ target 'iosApp' do
   
   # Pods for iosApp
   pod 'KMPNativeCoroutinesRxSwift'
+  pod 'Kingfisher'
 end
