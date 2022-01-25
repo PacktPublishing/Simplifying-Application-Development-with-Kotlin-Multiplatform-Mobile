@@ -12,9 +12,9 @@ import com.nagyrobi144.dogify.usecase.ToggleFavouriteStateUseCase
 import kotlinx.coroutines.launch
 
 suspend fun greet() =
-    "${FetchBreedsUseCase().invoke()}\n" +
-            "${GetBreedsUseCase().invoke()}\n" +
-            "${ToggleFavouriteStateUseCase().invoke(Breed("toggle favourite state test", ""))}\n"
+    "${FetchBreedsUseCase().invoke().firstOrNull()}\n\n" +
+            "${GetBreedsUseCase().invoke().firstOrNull()}\n\n" +
+            "${ToggleFavouriteStateUseCase().invoke(Breed("toggle favourite state test", ""))}\n\n"
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
