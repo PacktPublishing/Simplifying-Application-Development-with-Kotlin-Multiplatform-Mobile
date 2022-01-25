@@ -3,27 +3,27 @@ plugins {
     kotlin("android")
 }
 
-val composeVersion = "1.0.0-rc02"
+val composeVersion = "1.1.0-rc01"
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.4.1")
     // Android Lifecycle
     val lifecycleVersion = "2.3.1"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"){
         version {
             strictly("1.5.0-native-mt")
         }
     }
     // Android Kotlin extensions
-    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.core:core-ktx:1.7.0")
     //region Jetpack Compose
-    implementation("androidx.activity:activity-compose:1.3.0-rc02")
+    implementation("androidx.activity:activity-compose:1.4.0")
     implementation("androidx.compose.ui:ui:$composeVersion")
     // Tooling support (Previews, etc.)
-    implementation("androidx.compose.ui:ui-tooling:1.0.0-rc02")
+    implementation("androidx.compose.ui:ui-tooling:1.2.0-alpha01")
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
     implementation("androidx.compose.foundation:foundation:$composeVersion")
     // Material Design
@@ -31,18 +31,17 @@ dependencies {
     // Material design icons
     implementation("androidx.compose.material:material-icons-core:$composeVersion")
     implementation("androidx.compose.material:material-icons-extended:$composeVersion")
-    val accompanistVersion = "0.13.0"
-    implementation("com.google.accompanist:accompanist-coil:$accompanistVersion")
-    implementation("com.google.accompanist:accompanist-swiperefresh:$accompanistVersion")
+    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.24.0-alpha")
     //endregion Jetpack compose
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 31
     defaultConfig {
         applicationId = "com.nagyrobi144.dogify.android"
-        minSdkVersion(23)
-        targetSdkVersion(30)
+        minSdk = 23
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
     }
@@ -66,7 +65,6 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.5.10"
-        kotlinCompilerExtensionVersion = composeVersion
+        kotlinCompilerExtensionVersion = "1.1.0-rc02"
     }
 }

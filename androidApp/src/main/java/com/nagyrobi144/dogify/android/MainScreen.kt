@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nagyrobi144.dogify.model.Breed
@@ -50,7 +50,8 @@ fun MainScreen(viewModel: MainViewModel) {
                 Row(
                     Modifier
                         .wrapContentWidth(Alignment.End)
-                        .padding(8.dp)) {
+                        .padding(8.dp)
+                ) {
                     Text(text = "Filter favourites")
                     Switch(
                         checked = shouldFilterFavourites,
@@ -106,7 +107,7 @@ fun Breeds(breeds: List<Breed>, onFavouriteTapped: (Breed) -> Unit = {}) {
         items(breeds) {
             Column(Modifier.padding(8.dp)) {
                 Image(
-                    painter = rememberCoilPainter(request = it.imageUrl),
+                    painter = rememberImagePainter(it.imageUrl),
                     contentDescription = "${it.name}-image",
                     modifier = Modifier
                         .aspectRatio(1f)

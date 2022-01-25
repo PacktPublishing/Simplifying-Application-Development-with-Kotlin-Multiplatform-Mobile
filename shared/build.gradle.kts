@@ -3,19 +3,19 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    kotlin("plugin.serialization") version "1.5.21"
+    kotlin("plugin.serialization") version "1.6.10"
     id("com.squareup.sqldelight")
-    id("com.rickclephas.kmp.nativecoroutines") version "0.4.2"
+    id("com.rickclephas.kmp.nativecoroutines") version "0.11.1"
 }
 
 kotlin {
     android()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
+    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
+        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+        else -> ::iosX64
+    }
 
     iosTarget("ios") {
         binaries {
@@ -25,9 +25,9 @@ kotlin {
         }
     }
     sourceSets {
-        val ktorVersion = "1.6.1"
-        val sqlDelightVersion = "1.5.1"
-        val koinVersion = "3.1.2"
+        val ktorVersion = "2.0.0-beta-1"
+        val sqlDelightVersion = "1.5.3"
+        val koinVersion = "3.1.4"
         val commonMain by getting {
             dependencies {
                 api("io.insert-koin:koin-core:$koinVersion")
@@ -35,12 +35,14 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+
                 // Serialization
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.2.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt") {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt") {
                     version {
-                        strictly("1.5.0-native-mt")
+                        strictly("1.6.0-native-mt")
                     }
                 }
                 // Sql Delight
@@ -78,11 +80,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(23)
-        targetSdkVersion(30)
+        minSdk = 23
+        targetSdk = 31
     }
 }
 

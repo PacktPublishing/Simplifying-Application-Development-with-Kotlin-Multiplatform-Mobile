@@ -1,11 +1,11 @@
 package com.nagyrobi144.dogify.api
 
 import io.ktor.client.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import kotlin.native.concurrent.SharedImmutable
 
@@ -24,16 +24,17 @@ internal abstract class KtorApi {
     }
 }
 
-private val jsonConfiguration get() = Json {
-    prettyPrint = true
-    ignoreUnknownKeys = true
-    useAlternativeNames = false
-}
+private val jsonConfiguration
+    get() = Json {
+        prettyPrint = true
+        ignoreUnknownKeys = true
+        useAlternativeNames = false
+    }
 
 @SharedImmutable
 private val httpClient = HttpClient {
-    install(JsonFeature) {
-        serializer = KotlinxSerializer(jsonConfiguration)
+    install(ContentNegotiation) {
+        json(jsonConfiguration)
     }
     install(Logging) {
         logger = Logger.SIMPLE
