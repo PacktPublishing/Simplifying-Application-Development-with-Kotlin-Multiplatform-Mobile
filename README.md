@@ -2,7 +2,7 @@
 
 <a href="https://www.packtpub.com/product/simplifying-application-development-with-kotlin-multiplatform-mobile/9781801812580"><img src="https://static.packt-cdn.com/products/9781801812580/cover/smaller" alt="Simplifying Application Development with Kotlin Multiplatform Mobile" height="256px" align="right"></a>
 
-This is the code repository for [DIY Microcontroller Projects for Hobbyists](https://www.packtpub.com/product/simplifying-application-development-with-kotlin-multiplatform-mobile/9781801812580), published by Packt.
+This is the code repository for [Simplifying Application Development with Kotlin Multiplatform Mobile](https://www.packtpub.com/product/simplifying-application-development-with-kotlin-multiplatform-mobile/9781801812580), published by Packt.
 
 **Write robust native applications for iOS and Android efficiently**
 
