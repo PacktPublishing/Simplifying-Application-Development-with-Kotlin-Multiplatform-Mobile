@@ -53,7 +53,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ### Related products
 * How to Build Android Apps with Kotlin [[Packt]](https://www.packtpub.com/product/how-to-build-android-apps-with-kotlin/9781838984113) [[Amazon]](https://www.amazon.com/Build-Android-Apps-Kotlin-hands/dp/1838984119)
 
-* Android UI Development with Jetpack Compose [[Packt]](https://www.packtpub.com/product/architecting-high-performance-embedded-systems/9781789955965?utm_source=github&utm_medium=repository&utm_campaign=9781789955965) [[Amazon]](https://www.amazon.com/Android-Development-Jetpack-Compose-declarative-dp-1801812160/dp/1801812160/ref=mt_other?_encoding=UTF8&me=&qid=)
+* Android UI Development with Jetpack Compose [[Packt]](https://www.packtpub.com/product/android-ui-development-with-jetpack-compose/9781801812160) [[Amazon]](https://www.amazon.com/Android-Development-Jetpack-Compose-declarative-dp-1801812160/dp/1801812160/ref=mt_other?_encoding=UTF8&me=&qid=)
 
 
 ## Get to Know the Author
