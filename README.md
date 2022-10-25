@@ -59,3 +59,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ## Get to Know the Author
 **Róbert Nagy**
 is a Senior Android Developer at Octopus Energy. He is an Android and Kotlin developer with a Bachelor of Science in Computer Science. He has designed, developed, and maintained multiple sophisticated Android apps ranging from 100K+ downloads to 10M+ in the financial, IoT, health, social, and energy industries. Some projects that he has been a part of include a social platform for kids, a lightning system controller, and Bloom and Wild.
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781801812580">https://packt.link/free-ebook/9781801812580 </a> </p>
